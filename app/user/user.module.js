@@ -14,6 +14,7 @@ var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var user_routes_1 = require('./user.routes');
 var profile_component_1 = require('./profile.component');
+var login_component_1 = require('./login.component');
 var UserModule = (function () {
     function UserModule() {
     }
@@ -26,7 +27,8 @@ var UserModule = (function () {
                 router_1.RouterModule.forChild(user_routes_1.userRoutes)
             ],
             declarations: [
-                profile_component_1.ProfileComponent
+                profile_component_1.ProfileComponent,
+                login_component_1.LoginComponent
             ],
             providers: []
         }), 

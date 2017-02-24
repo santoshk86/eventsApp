@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var auth_service_1 = require('../user/auth.service');
-var NavBarComponent = (function () {
-    function NavBarComponent(authService) {
-        this.authService = authService;
+var CollapsibleWellComponent = (function () {
+    function CollapsibleWellComponent() {
+        this.visible = true;
     }
-    NavBarComponent = __decorate([
+    CollapsibleWellComponent.prototype.toggleContent = function () {
+        this.visible = !this.visible;
+    };
+    CollapsibleWellComponent = __decorate([
         core_1.Component({
-            selector: 'nav-bar',
-            templateUrl: 'app/nav/navbar.component.html',
-            styles: ["\n        .nav.navbar-nav { font-size : 15px ; }\n        #searchForm { margin-right: 100px; }\n        @media (max-width:1200px) { #searchForm { display : none } }\n        li > a.active { color : #f97924; }\n    "]
+            selector: 'collapsible-well',
+            template: "\n      <div (click)=\"toggleContent()\" class=\"well pointable\">\n        <h4>\n          <ng-content select=\"[well-title]\"></ng-content>\n        </h4>\n        <ng-content *ngIf=\"visible\" select=\"[well-body]\"></ng-content>\n      </div>\n  "
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
-    ], NavBarComponent);
-    return NavBarComponent;
+        __metadata('design:paramtypes', [])
+    ], CollapsibleWellComponent);
+    return CollapsibleWellComponent;
 }());
-exports.NavBarComponent = NavBarComponent;
-//# sourceMappingURL=navbar.component.js.map
+exports.CollapsibleWellComponent = CollapsibleWellComponent;
+//# sourceMappingURL=collapsible-well.component.js.map
