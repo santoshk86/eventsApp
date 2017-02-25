@@ -16,9 +16,9 @@ var CreateEventComponent = (function () {
         this.router = router;
         this.eventService = eventService;
         this.isDirty = true;
+        this.event = { location: {} };
     }
     CreateEventComponent.prototype.saveEvent = function (formValues) {
-        console.log(formValues);
         this.eventService.saveEvent(formValues);
         this.router.navigate(['/events']);
         this.isDirty = false;

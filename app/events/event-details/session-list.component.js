@@ -9,8 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var auth_service_1 = require('../../user/auth.service');
+var voter_service_1 = require('./voter.service');
 var SessionListComponent = (function () {
-    function SessionListComponent() {
+    function SessionListComponent(authService, voterService) {
+        this.authService = authService;
+        this.voterService = voterService;
         this.visibleSessions = [];
     }
     SessionListComponent.prototype.ngOnChanges = function () {
@@ -18,6 +22,19 @@ var SessionListComponent = (function () {
             this.filterSessions(this.filterBy);
             this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc);
         }
+    };
+    SessionListComponent.prototype.toggleVote = function (session) {
+        if (this.userHasVoted(session)) {
+            this.voterService.deleteVoter(this.eventId, session, this.authService.currentUser.userName);
+        }
+        else {
+            this.voterService.addVoter(this.eventId, session, this.authService.currentUser.userName);
+        }
+        if (this.sortBy === 'votes')
+            this.visibleSessions.sort(sortByVotesDesc);
+    };
+    SessionListComponent.prototype.userHasVoted = function (session) {
+        return this.voterService.userHasVoted(session, this.authService.currentUser.userName);
     };
     SessionListComponent.prototype.filterSessions = function (filter) {
         if (filter === 'all') {
@@ -41,13 +58,17 @@ var SessionListComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], SessionListComponent.prototype, "sortBy", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SessionListComponent.prototype, "eventId", void 0);
     SessionListComponent = __decorate([
         core_1.Component({
             selector: 'session-list',
             templateUrl: '/app/events/event-details/session-list.component.html',
             styles: ['collapsible-well h6 {margin-top:-5px; margin-bottom:10px }'],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, voter_service_1.VoterService])
     ], SessionListComponent);
     return SessionListComponent;
 }());
