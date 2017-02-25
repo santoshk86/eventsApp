@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
 var events_app_component_1 = require('./events-app.component');
 var index_1 = require('./events/index');
 var navbar_component_1 = require('./nav/navbar.component');
@@ -24,7 +25,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule,
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule,
                 router_1.RouterModule.forRoot(routes_1.appRoutes)
             ],
             declarations: [
@@ -47,7 +48,7 @@ var AppModule = (function () {
             providers: [index_1.VoterService, index_1.EventService, {
                     provide: index_2.TOASTR_TOKEN, useValue: toastr },
                 { provide: index_2.JQ_TOKEN, useValue: jQuery },
-                { provide: index_1.EventRouteActivator, useClass: index_1.EventRouteActivator },
+                { provide: index_1.EventResolver, useClass: index_1.EventResolver },
                 index_1.EventListResolver,
                 auth_service_1.AuthService,
                 { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }],

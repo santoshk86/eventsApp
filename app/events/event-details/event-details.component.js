@@ -20,8 +20,8 @@ var EventDetailsComponent = (function () {
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.forEach(function (params) {
-            _this.event = _this.eventService.getEvent(+params['id']);
+        this.route.data.forEach(function (data) {
+            _this.event = data['event'];
             _this.addMode = false;
             _this.filterBy = 'all';
             _this.sortBy = 'votes';

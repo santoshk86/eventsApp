@@ -18,17 +18,20 @@ export class EventDetailsComponent {
   sortBy: string = 'votes'
   constructor(private eventService: EventService, private route: ActivatedRoute) {
   }
+
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventService.getEvent(+params['id']);
-      this.addMode = false;
-      this.filterBy ='all'
-      this.sortBy ='votes'
+    this.route.data.forEach((data) => {
+       this.event = data['event']
+        this.addMode = false;
+        this.filterBy = 'all'
+        this.sortBy = 'votes'
     })
   }
+
   addSession() {
     this.addMode = true;
   }
+
   saveNewSession(session: ISession) {
     const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
     session.id = nextId + 1
@@ -36,6 +39,7 @@ export class EventDetailsComponent {
     this.eventService.updateEvent(this.event)
     this.addMode = false
   }
+
   cancelAddSession() {
     this.addMode = false
   }
