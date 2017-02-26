@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var event_service_1 = require('./shared/event.service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var event_service_1 = require("./shared/event.service");
+var router_1 = require("@angular/router");
 var EventsListComponent = (function () {
     function EventsListComponent(eventService, route) {
         this.eventService = eventService;
@@ -19,13 +20,14 @@ var EventsListComponent = (function () {
     EventsListComponent.prototype.ngOnInit = function () {
         this.events = this.route.snapshot.data['events'];
     };
-    EventsListComponent = __decorate([
-        core_1.Component({
-            template: "\n            <div>\n                <h1>Upcoming Angular 2 Events</h1>\n                <hr>\n                <div class = \"row\">\n                    <div *ngFor=\"let event of events\" class = \"col-md-5\">\n                        <event-thumbnail [event]=\"event\"></event-thumbnail>\n                    </div>\n                 </div>\n            </div>"
-        }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute])
-    ], EventsListComponent);
     return EventsListComponent;
 }());
+EventsListComponent = __decorate([
+    core_1.Component({
+        template: "\n            <div>\n                <h1>Upcoming Angular 2 Events</h1>\n                <hr>\n                <div class = \"row\">\n                    <div *ngFor=\"let event of events\" class = \"col-md-5\">\n                        <event-thumbnail [event]=\"event\"></event-thumbnail>\n                    </div>\n                 </div>\n            </div>"
+    }),
+    __metadata("design:paramtypes", [event_service_1.EventService,
+        router_1.ActivatedRoute])
+], EventsListComponent);
 exports.EventsListComponent = EventsListComponent;
 //# sourceMappingURL=events-list.component.js.map

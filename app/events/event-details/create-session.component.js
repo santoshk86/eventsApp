@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var forms_1 = require('@angular/forms');
-var index_1 = require('../shared/index');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var index_1 = require("../shared/index");
 var CreateSessionComponent = (function () {
     function CreateSessionComponent() {
         this.saveNewSession = new core_1.EventEmitter();
@@ -45,23 +46,22 @@ var CreateSessionComponent = (function () {
     CreateSessionComponent.prototype.cancel = function () {
         this.cancelAddSession.emit();
     };
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], CreateSessionComponent.prototype, "saveNewSession", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], CreateSessionComponent.prototype, "cancelAddSession", void 0);
-    CreateSessionComponent = __decorate([
-        core_1.Component({
-            selector: 'create-session',
-            templateUrl: '/app/events/event-details/create-session.component.html',
-            styles: ["\n    em {float:right; color:#E05C65; padding-left:10px;}\n    .error input, .error select, .error textarea {background-color:#E3C3C5;}\n    .error ::-webkit-input-placeholder { color: #999; } \n    .error :-moz-placeholder { color: #999; }\n    .error ::-moz-placeholder { color: #999; }\n    .error :ms-input-placeholder  { color: #999; }\n  "]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], CreateSessionComponent);
     return CreateSessionComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CreateSessionComponent.prototype, "saveNewSession", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CreateSessionComponent.prototype, "cancelAddSession", void 0);
+CreateSessionComponent = __decorate([
+    core_1.Component({
+        selector: 'create-session',
+        templateUrl: '/app/events/event-details/create-session.component.html',
+        styles: ["\n    em {float:right; color:#E05C65; padding-left:10px;}\n    .error input, .error select, .error textarea {background-color:#E3C3C5;}\n    .error ::-webkit-input-placeholder { color: #999; } \n    .error :-moz-placeholder { color: #999; }\n    .error ::-moz-placeholder { color: #999; }\n    .error :ms-input-placeholder  { color: #999; }\n  "]
+    })
+], CreateSessionComponent);
 exports.CreateSessionComponent = CreateSessionComponent;
 //# sourceMappingURL=create-session.component.js.map

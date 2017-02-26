@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var event_service_1 = require('../shared/event.service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var event_service_1 = require("../shared/event.service");
+var router_1 = require("@angular/router");
 var EventDetailsComponent = (function () {
     function EventDetailsComponent(eventService, route) {
         this.eventService = eventService;
@@ -34,20 +35,20 @@ var EventDetailsComponent = (function () {
         var nextId = Math.max.apply(null, this.event.sessions.map(function (s) { return s.id; }));
         session.id = nextId + 1;
         this.event.sessions.push(session);
-        this.eventService.updateEvent(this.event);
+        this.eventService.saveEvent(this.event).subscribe();
         this.addMode = false;
     };
     EventDetailsComponent.prototype.cancelAddSession = function () {
         this.addMode = false;
     };
-    EventDetailsComponent = __decorate([
-        core_1.Component({
-            templateUrl: '/app/events/event-details/event-details.component.html',
-            styles: ["\n    .container { padding-left:20px; padding-right:20px; }\n    .event-image { height: 100px; }\n     a { cursor : pointer }\n  "]
-        }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute])
-    ], EventDetailsComponent);
     return EventDetailsComponent;
 }());
+EventDetailsComponent = __decorate([
+    core_1.Component({
+        templateUrl: '/app/events/event-details/event-details.component.html',
+        styles: ["\n    .container { padding-left:20px; padding-right:20px; }\n    .event-image { height: 100px; }\n     a { cursor : pointer }\n  "]
+    }),
+    __metadata("design:paramtypes", [event_service_1.EventService, router_1.ActivatedRoute])
+], EventDetailsComponent);
 exports.EventDetailsComponent = EventDetailsComponent;
 //# sourceMappingURL=event-details.component.js.map

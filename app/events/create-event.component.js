@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var index_1 = require('./shared/index');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var index_1 = require("./shared/index");
 var CreateEventComponent = (function () {
     function CreateEventComponent(router, eventService) {
         this.router = router;
@@ -19,21 +20,23 @@ var CreateEventComponent = (function () {
         this.event = { location: {} };
     }
     CreateEventComponent.prototype.saveEvent = function (formValues) {
-        this.eventService.saveEvent(formValues);
-        this.router.navigate(['/events']);
-        this.isDirty = false;
+        var _this = this;
+        this.eventService.saveEvent(formValues).subscribe(function (event) {
+            _this.router.navigate(['/events']);
+            _this.isDirty = false;
+        });
     };
     CreateEventComponent.prototype.cancel = function () {
         this.router.navigate(['/events']);
     };
-    CreateEventComponent = __decorate([
-        core_1.Component({
-            templateUrl: 'app/events/create-event.component.html',
-            styles: ["\n    em {float:right; color:#E05C65; padding-left:10px;}\n    .error input {background-color:#E3C3C5;}\n    .error ::-webkit-input-placeholder { color: #999; } \n    .error :-moz-placeholder { color: #999; }\n    .error ::-moz-placeholder { color: #999; }\n    .error :ms-input-placeholder  { color: #999; }\n  "]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, index_1.EventService])
-    ], CreateEventComponent);
     return CreateEventComponent;
 }());
+CreateEventComponent = __decorate([
+    core_1.Component({
+        templateUrl: 'app/events/create-event.component.html',
+        styles: ["\n    em {float:right; color:#E05C65; padding-left:10px;}\n    .error input {background-color:#E3C3C5;}\n    .error ::-webkit-input-placeholder { color: #999; } \n    .error :-moz-placeholder { color: #999; }\n    .error ::-moz-placeholder { color: #999; }\n    .error :ms-input-placeholder  { color: #999; }\n  "]
+    }),
+    __metadata("design:paramtypes", [router_1.Router, index_1.EventService])
+], CreateEventComponent);
 exports.CreateEventComponent = CreateEventComponent;
 //# sourceMappingURL=create-event.component.js.map

@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var auth_service_1 = require('../user/auth.service');
-var index_1 = require('../events/index');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var auth_service_1 = require("../user/auth.service");
+var index_1 = require("../events/index");
 var NavBarComponent = (function () {
     function NavBarComponent(authService, eventService) {
         this.authService = authService;
@@ -23,15 +24,15 @@ var NavBarComponent = (function () {
             _this.foundSessions = sessions;
         });
     };
-    NavBarComponent = __decorate([
-        core_1.Component({
-            selector: 'nav-bar',
-            templateUrl: 'app/nav/navbar.component.html',
-            styles: ["\n        .nav.navbar-nav { font-size : 15px ; }\n        #searchForm { margin-right: 100px; }\n        @media (max-width:1200px) { #searchForm { display : none } }\n        li > a.active { color : #f97924; }\n    "]
-        }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, index_1.EventService])
-    ], NavBarComponent);
     return NavBarComponent;
 }());
+NavBarComponent = __decorate([
+    core_1.Component({
+        selector: 'nav-bar',
+        templateUrl: 'app/nav/navbar.component.html',
+        styles: ["\n        .nav.navbar-nav { font-size : 15px ; }\n        #searchForm { margin-right: 100px; }\n        @media (max-width:1200px) { #searchForm { display : none } }\n        li > a.active { color : #f97924; }\n    "]
+    }),
+    __metadata("design:paramtypes", [auth_service_1.AuthService, index_1.EventService])
+], NavBarComponent);
 exports.NavBarComponent = NavBarComponent;
 //# sourceMappingURL=navbar.component.js.map

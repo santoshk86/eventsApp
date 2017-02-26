@@ -8,30 +8,73 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Rx_1 = require("rxjs/Rx");
 var AuthService = (function () {
-    function AuthService() {
+    function AuthService(http) {
+        this.http = http;
     }
     AuthService.prototype.loginUser = function (userName, password) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var loginInfo = { username: userName, password: password };
+        /*
+        return this.http.post('/api/login', JSON.stringify(loginInfo), options)
+          .do(resp => {
+            if (resp) {
+              this.currentUser = <IUser>resp.json().user;
+            }
+          }).catch(error => {
+            return Observable.of(false);
+          })*/
         this.currentUser = {
-            id: 1,
+            id: Math.random(),
             userName: userName,
-            firstName: 'Santosh',
-            lastName: 'Singh'
+            firstName: 'John',
+            lastName: 'Papa'
         };
+        return Rx_1.Observable.of(true);
     };
     AuthService.prototype.isAuthenticated = function () {
         return !!this.currentUser;
     };
+    AuthService.prototype.checkAuthenticationStatus = function () {
+        var _this = this;
+        return this.http.get('/api/currentIdentity').map(function (response) {
+            if (response._body) {
+                return response.json();
+            }
+            else {
+                return {};
+            }
+        })
+            .do(function (currentUser) {
+            if (!!currentUser.userName) {
+                _this.currentUser = currentUser;
+            }
+        })
+            .subscribe();
+    };
     AuthService.prototype.updateCurrentUser = function (firstName, lastName) {
         this.currentUser.firstName = firstName;
         this.currentUser.lastName = lastName;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.put("/api/users/" + this.currentUser.id, JSON.stringify(this.currentUser), options);
     };
-    AuthService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], AuthService);
+    AuthService.prototype.logout = function () {
+        this.currentUser = undefined;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post('/api/logout', JSON.stringify({}), options);
+    };
     return AuthService;
 }());
+AuthService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

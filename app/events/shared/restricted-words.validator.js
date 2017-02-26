@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function restrictedWords(words) {
     return function (control) {
         if (!words)

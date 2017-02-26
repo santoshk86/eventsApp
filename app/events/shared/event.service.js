@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var RX_1 = require('rxjs/RX');
-var http_1 = require('@angular/http');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var RX_1 = require("rxjs/RX");
+var http_1 = require("@angular/http");
 var EventService = (function () {
     function EventService(http) {
         this.http = http;
@@ -26,40 +27,26 @@ var EventService = (function () {
         }).catch(this.handleError);
     };
     EventService.prototype.saveEvent = function (event) {
-        event.id = 999;
-        event.sessions = [];
-        EVENTS.push(event);
-    };
-    EventService.prototype.updateEvent = function (event) {
-        var index = EVENTS.findIndex(function (x) { return x.id = event.id; });
-        EVENTS[index] = event;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post('/api/events', JSON.stringify(event), options).map(function (response) {
+            return response.json();
+        }).catch(this.handleError);
     };
     EventService.prototype.searchSessions = function (searchTerm) {
-        var term = searchTerm.toLocaleLowerCase();
-        var results = [];
-        EVENTS.forEach(function (event) {
-            var matchingSessions = event.sessions.filter(function (session) { return session.name.toLocaleLowerCase().indexOf(term) > -1; });
-            matchingSessions = matchingSessions.map(function (session) {
-                session.eventId = event.id;
-                return session;
-            });
-            results = results.concat(matchingSessions);
-        });
-        var emitter = new core_1.EventEmitter(true);
-        setTimeout(function () {
-            emitter.emit(results);
-        }, 100);
-        return emitter;
+        return this.http.get("/api/sessions/search?search=" + searchTerm).map(function (response) {
+            return response.json();
+        }).catch(this.handleError);
     };
     EventService.prototype.handleError = function (error) {
         return RX_1.Observable.throw(error.statusText);
     };
-    EventService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], EventService);
     return EventService;
 }());
+EventService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], EventService);
 exports.EventService = EventService;
 var EVENTS = [
     {
