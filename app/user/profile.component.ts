@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
       this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(() => {
         this.toastr.success('Profile Saved.')
       })
-      //this.router.navigate(['events'])
     }
   }
 

@@ -37,7 +37,6 @@ var ProfileComponent = (function () {
             this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(function () {
                 _this.toastr.success('Profile Saved.');
             });
-            //this.router.navigate(['events'])
         }
     };
     ProfileComponent.prototype.validateFirstName = function () {

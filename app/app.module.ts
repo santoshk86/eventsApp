@@ -1,6 +1,7 @@
+import './rxjs-extensions';
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-import { RouterModule } from '@angular/router'
+import { RouterModule, PreloadAllModules } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 
@@ -33,7 +34,7 @@ declare let jQuery: Object
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule,HttpModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes, { preloadingStrategy : PreloadAllModules })
     ],
     declarations:
     [

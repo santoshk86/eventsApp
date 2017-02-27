@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { IUser } from './user.model'
 import { Http, Response, Headers, Request, RequestOptions } from '@angular/http'
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +15,7 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let loginInfo = { username: userName, password: password }
-
-    /*
+    
     return this.http.post('/api/login', JSON.stringify(loginInfo), options)
       .do(resp => {
         if (resp) {
@@ -24,15 +23,7 @@ export class AuthService {
         }
       }).catch(error => {
         return Observable.of(false);
-      })*/
-
-    this.currentUser = {  // for dev testing only, until you not create node server for login the user.
-      id: Math.random(),
-      userName: userName,
-      firstName: 'John',
-      lastName: 'Papa'
-    }
-    return Observable.of(true);
+      })
   }
 
   isAuthenticated() {

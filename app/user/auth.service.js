@@ -11,31 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var Rx_1 = require("rxjs/Rx");
+var Observable_1 = require("rxjs/Observable");
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
     }
     AuthService.prototype.loginUser = function (userName, password) {
+        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         var loginInfo = { username: userName, password: password };
-        /*
         return this.http.post('/api/login', JSON.stringify(loginInfo), options)
-          .do(resp => {
+            .do(function (resp) {
             if (resp) {
-              this.currentUser = <IUser>resp.json().user;
+                _this.currentUser = resp.json().user;
             }
-          }).catch(error => {
-            return Observable.of(false);
-          })*/
-        this.currentUser = {
-            id: Math.random(),
-            userName: userName,
-            firstName: 'John',
-            lastName: 'Papa'
-        };
-        return Rx_1.Observable.of(true);
+        }).catch(function (error) {
+            return Observable_1.Observable.of(false);
+        });
     };
     AuthService.prototype.isAuthenticated = function () {
         return !!this.currentUser;

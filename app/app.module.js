@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("./rxjs-extensions");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
@@ -26,7 +27,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule,
-            router_1.RouterModule.forRoot(routes_1.appRoutes)
+            router_1.RouterModule.forRoot(routes_1.appRoutes, { preloadingStrategy: router_1.PreloadAllModules })
         ],
         declarations: [
             events_app_component_1.EventsAppComponent,
